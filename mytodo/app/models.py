@@ -1,7 +1,19 @@
+from secrets import choice
 from django.db import models
 from django.conf import settings
 from django.utils import timezone
 
-# class Ticket(models.Model):
-#     title = models.CharField(verbose_name="タスク名", max_length=100)
-#     description = models.TextField
+class Ticket(models.Model):
+    TASK_STATUS = [
+            ('', 'Select')
+            ('Not implemented', 'Not implemented'),
+            ('In progress', 'In progress'),
+            ('Pending', 'Pending'),
+            ('Closed', 'Closed'),
+        ],
+    title = models.CharField(max_length=100, help_text = 'タスク名')
+    description = models.TextField(help_text='備考欄')
+    task_status = models.CharField(max_length=20, choices=TASK_STATUS, help_text='ステータス')
+    limit_time = models.DateTimeField(help_text='期限')
+    created_at = models.DateTimeField(help_text='作成日時')
+    update_at = models.DateTimeField(help_text='更新日時')
