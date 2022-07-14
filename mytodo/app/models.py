@@ -5,12 +5,12 @@ from django.utils import timezone
 
 class Ticket(models.Model):
     TASK_STATUS = (
-            ('', 'Select')
+            ('', 'Select'),
             ('Not implemented', 'Not implemented'),
             ('In progress', 'In progress'),
             ('Pending', 'Pending'),
             ('Closed', 'Closed'),
-        ),
+        )
     title = models.CharField(max_length=100, help_text = 'タスク名')
     description = models.TextField(help_text='備考欄')
     task_status = models.CharField(max_length=20, choices=TASK_STATUS, help_text='ステータス')
