@@ -9,7 +9,9 @@
                         <h2 class="card-title">{{ ticket.title }}</h2>
                         <p class="card-text">{{ticket.status }}</p>
                         <p class="card-text">期限: {{ticket.limit_time }}</p>
-                        <div class="btn btn-primary">詳細</div>
+                        <div class="btn btn-primary">詳細
+                            <a href="" class="stretched-link" href="{% url 'ticket_detail' ticket.id"></a>
+                        </div>
                     </div>
                 </div>
             {% endfor %}
