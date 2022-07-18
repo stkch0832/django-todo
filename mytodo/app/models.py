@@ -15,8 +15,8 @@ class Ticket(models.Model):
     description = models.TextField(help_text='備考欄')
     task_status = models.CharField(max_length=20, choices=TASK_STATUS, help_text='ステータス')
     limit_time = models.DateTimeField(help_text='期限')
-    created_at = models.DateTimeField(help_text='作成日時')
-    update_at = models.DateTimeField(help_text='更新日時')
+    created_at = models.DateTimeField(help_text='作成日時', auto_now_add=True)
+    update_at = models.DateTimeField(help_text='更新日時', auto_now=True)
 
     def __str__(self):
             return self.title
