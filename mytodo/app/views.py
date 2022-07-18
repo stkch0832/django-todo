@@ -31,7 +31,7 @@ class CreateTicketView(LoginRequiredMixin, View):
 
         if form.is_valid():
             ticket_data = Ticket()
-            # ticket_data.user = request.user
+            ticket_data.user = request.user
             ticket_data.title = form.cleaned_data['title']
             ticket_data.description = form.cleaned_data['description']
             ticket_data.save()
