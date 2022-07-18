@@ -1,0 +1,21 @@
+{% extends "app/base.html" %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<div class="my-4">
+    <h2>新規作成</h2>
+</div>
+
+<form method="post">
+    {% csrf_token %}
+    <div class="formticket">
+        {% render_field form.title class="form-control" placeholder="タスク名を入力" %}
+    </div>
+    <div class="formticket">
+        {% render_field form.description class="form-control" placeholder="詳細を入力" %}
+    </div>
+    <button type="submit" class="btn btn-primary">新規作成</button>
+</form>
+
+{% endblock %}
