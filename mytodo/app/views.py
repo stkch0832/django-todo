@@ -71,3 +71,15 @@ class TicketEditView(LoginRequiredMixin, View):
         return render(request, 'app/ticket_form.html', {
             'form': form
         })
+
+class TicketDeleteView(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        ticket_data = Ticket.objects.get(id=self.kwargs['pk'])
+        return render(request, 'app/ticket_delete.html', {
+            'ticket_data': ticket_data
+        })
+
+    def post(self, request, *args, **kwargs):
+        ticket_data = Ticket.objects.get(id=self.kwargs['pk'])
+        ticket_data.delete()
+        return redirect('index')

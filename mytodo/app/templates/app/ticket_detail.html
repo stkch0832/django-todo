@@ -10,7 +10,7 @@
 <hr>
 <div class="d-flex mb-5">
     <a href="{% url 'ticket_edit' ticket_data.id %}" class="btn btn-warning mr-2">編集する</a>
-    <a href="" class="btn btn-danger">削除する</a>
+    <a href="{% url 'ticket_delete' ticket_data.id %}" class="btn btn-danger">削除する</a>
 </div>
 {% endif %}
 {% endblock %}

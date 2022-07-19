@@ -1,20 +1,20 @@
 {% extends "app/base.html" %}
 
 {% block content %}
-    <div class="row my-4">
-        <div class="col-md-8">
-            {% for ticket in ticket_data %}
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <h2 class="card-title">{{ ticket.title }}</h2>
-                        <p class="card-text">{{ticket.status }}</p>
-                        <p class="card-text">期限: {{ticket.limit_time }}</p>
-                        <div class="btn btn-primary">詳細
-                            <a class="stretched-link" href="{% url 'ticket_detail' ticket.id %}"></a>
-                        </div>
-                    </div>
+<div class="row my-4">
+    <div class="col-md-8">
+        {% for ticket in ticket_data %}
+        <div class="card mb-4">
+            <div class="card-body">
+                <h2 class="card-title">{{ ticket.title }}</h2>
+                <p class="card-text">{{ticket.status }}</p>
+                <p class="card-text">期限: {{ticket.limit_time }}</p>
+                <div class="btn btn-primary">詳細
+                    <a class="stretched-link" href="{% url 'ticket_detail' ticket.id %}"></a>
                 </div>
-            {% endfor %}
+            </div>
         </div>
+        {% endfor %}
     </div>
+</div>
 {% endblock %}
