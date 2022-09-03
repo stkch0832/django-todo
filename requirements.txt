@@ -1,0 +1,5 @@
+Django==3.1.4
+django-widget-tweaks~=1.4.8
+django-allauth~=0.41.0
+django-bootstrap4
+django-bootstrap-datepicker-plus
