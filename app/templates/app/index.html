@@ -18,7 +18,7 @@ Todo list
                 <p class="card-limit_datetime">期限: {{ post.limit_datetime }}</p>
                 <p class="card-description">{{ post.description|truncatechars:50 }}</p>
             </div>
-            <a href="" class="ml-3 mb-3">
+            <a href="{% url 'post_detail' post.id %}" class="ml-3 mb-3">
                 <button class="btn btn-primary">詳細</button>
             </a>
         </div>
