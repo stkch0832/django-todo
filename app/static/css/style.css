@@ -1,0 +1,26 @@
+@charset "utf-8";
+
+・{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    min-height:100vh;
+    background-color: rgb(174, 208, 243);
+}
+
+nav {
+    margin-bottom: 20px;
+}
+
+main {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.card {
+    margin-bottom: 20px;
+}
