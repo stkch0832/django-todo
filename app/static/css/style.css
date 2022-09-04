@@ -13,14 +13,15 @@ body {
 }
 
 nav {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 main {
-    width: 80%;
+    width: 50%;
     margin: 0 auto;
 }
 
 .card {
-    margin-bottom: 20px;
+    width: 100%;
+    margin-bottom: 30px;
 }
