@@ -1,0 +1,29 @@
+{% extends 'app/base.html' %}
+
+{% load bootstrap4 %}
+{% bootstrap_css %}
+
+{% block title %}
+Todo list
+{% endblock %}
+
+{% block content %}
+
+    {% for post in post_data %}
+    <div class="card p-3">
+        <div class="card-body">
+            <h2 class="card-title">{{ post.title }}</h2>
+            <h3 class="card-urgency row">
+                <p class="card-status col">{{ post.get_status_display }}</p>
+                <p class="card-priority col">{{ post.get_priority_display }}</p>
+            </h3>
+            <p class="card-limit_datetime">期限: {{ post.limit_datetime }}</p>
+            <p class="card-description">{{ post.description|truncatechars:50 }}</p>
+            <div class="col text-right">
+                <a class="btn btn-primary" href="{% url 'post_detail' post.id %}">詳細</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+{% endblock %}

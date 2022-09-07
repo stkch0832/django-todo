@@ -1,0 +1,53 @@
+{% extends 'app/base.html' %}
+
+{% block title %}
+タスク詳細
+{% endblock %}
+
+{% block content %}
+<div class="card p-5">
+
+    <h2 class="my-4">{{ post_data.title }}</h2>
+    <hr>
+    <div class="row">
+        <p class="col">ステータス:<br>
+            {{ post_data.get_status_display }}
+        </p>
+        <p class="col">
+            優先度: <br>
+            {{ post_data.get_priority_display }}
+        </p>
+        <p class="col">
+            更新日時:<br>
+            {{ post_data.updated_at }}
+        </p>
+    </div>
+    <hr>
+    <p>期限:<br>
+        {{ post_data.limit_datetime }}
+    </p>
+    <hr>
+    <p>
+        詳細:<br>
+        {{ post_data.description }}
+    </p>
+    <hr>
+    <div class="row">
+        <p class="col-6">作成日時:<br>
+            {{ post_data.created_at }}
+        </p>
+        <p class="col-6">created by: <br>
+            {{ post_data.user }}
+        </p>
+    </div>
+    <hr>
+
+    {% if user.is_authenticated %}
+    <div class="d-flex justify-content-end">
+        <a class="btn btn-primary ml-3 mb-3" href="{% url 'post_edit' post_data.id %}">編集する</a>
+        <a class="btn btn-danger ml-3 mb-3" href="{% url 'post_delete' post_data.id %}">削除する</a>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}
