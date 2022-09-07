@@ -1,0 +1,24 @@
+{% extends 'app/base.html' %}
+
+{% block title %}
+タスクの削除
+{% endblock %}
+
+{% block content %}
+
+<div class="card p-5">
+    <h2>{{ post_data.title }}</h2>
+    <hr>
+    <h5>削除してもよろしいですか？</h5>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="col text-right">
+            <button class="btn btn-danger mt-3" type="submit">
+                削除する
+            </button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

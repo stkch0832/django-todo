@@ -45,7 +45,7 @@
     {% if user.is_authenticated %}
     <div class="d-flex justify-content-end">
         <a class="btn btn-primary ml-3 mb-3" href="{% url 'post_edit' post_data.id %}">編集する</a>
-        <a class="btn btn-danger ml-3 mb-3" href="">削除する</a>
+        <a class="btn btn-danger ml-3 mb-3" href="{% url 'post_delete' post_data.id %}">削除する</a>
     </div>
     {% endif %}
 </div>

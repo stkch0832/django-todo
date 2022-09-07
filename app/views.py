@@ -81,3 +81,16 @@ class PostEditView(View):
         return render(request, 'app/post_form.hrml', context={
             'form': form,
         })
+
+
+class PostDeleteView(View):
+    def get(self, request, *args, **kwargs):
+        post_data = Post.objects.get(id=self.kwargs['pk'])
+        return render(request, 'app/post_delete.html', context= {
+            'post_data': post_data,
+        })
+
+    def post(self, request, *args, **kwargs):
+        post_data = Post.objects.get(id=self.kwargs['pk'])
+        post_data.delete()
+        return redirect('index')
