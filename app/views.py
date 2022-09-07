@@ -45,3 +45,39 @@ class CreatePostView(View):
         return render(request, 'app/post_form.html', context = {
             'form': form,
         })
+
+
+class PostEditView(View):
+    def get(self, request, *args, **kwargs):
+        post_data = Post.objects.get(id=self.kwargs['pk'])
+        form = PostModelForm(
+            request.POST or None,
+            initial={
+                'title': post_data.title,
+                'status': post_data.status,
+                'priority': post_data.priority,
+                'limit_datetime': post_data.limit_datetime,
+                'description': post_data.description,
+            }
+        )
+
+        return render(request, 'app/post_form.html', context={
+            'form': form
+        })
+
+    def post(self, request, *args, **kwargs):
+        form = PostModelForm(request.POST or None)
+
+        if form.is_valid():
+            post_data = Post.objects.get(id=self.kwargs['pk'])
+            post_data.title = form.cleaned_data['title']
+            post_data.status = form.cleaned_data['status']
+            post_data.priority = form.cleaned_data['priority']
+            post_data.limit_datetime = form.cleaned_data['limit_datetime']
+            post_data.description = form.cleaned_data['description']
+            post_data.save()
+            return redirect('post_detail', self.kwargs['pk'])
+
+        return render(request, 'app/post_form.hrml', context={
+            'form': form,
+        })
