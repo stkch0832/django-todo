@@ -1,0 +1,22 @@
+{% extends "app/base.html" %}
+
+{% block title %}
+ログアウト
+{% endblock %}
+
+
+{% block content %}
+
+<div class="card card-auth my-5 mx-auto">
+    <div class="card-body">
+        <p class="card-title text-center">ログアウトしますか？</p>
+        <form method="post" class="form-auth">
+            {% csrf_token %}
+            <div class="text-center">
+                <button class="btn btn-danger" type="submit">ログアウト</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
