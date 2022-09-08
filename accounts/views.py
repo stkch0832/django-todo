@@ -4,6 +4,7 @@ from allauth.account import views
 class LoginView(views.LoginView):
     template_name = 'accounts/login.html'
 
+
 class LogoutView(views.LogoutView):
     template_name = 'accounts/logout.html'
 
@@ -11,3 +12,6 @@ class LogoutView(views.LogoutView):
         if self.request.user.is_authenticated:
             self.logout()
         return redirect('account_login')
+
+class SignupView(views.SignupView):
+    template_name = 'accounts/signup.html'

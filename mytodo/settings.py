@@ -135,4 +135,5 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 ACCOUNT_FORMS = {
 'login': 'accounts.forms.CustomLoginForm',
+'signup': 'accounts.forms.CustomSignupForm',
 }
