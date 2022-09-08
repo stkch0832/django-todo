@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from .models import Post
 from .forms import PostModelForm
 
+
 class IndexView(View):
     def get(self, request, *args, **kwargs):
         post_data = Post.objects.order_by('-id')
@@ -28,7 +29,7 @@ class CreatePostView(View):
             })
 
     def post(self, request, *args, **kwargs):
-        form = (request.POST or None)
+        form = PostModelForm(request.POST or None)
 
         if form.is_valid():
             post_data = Post()
