@@ -2,6 +2,7 @@ from django.views.generic import View
 from django.shortcuts import render, redirect
 from .models import Post
 from .forms import PostModelForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class IndexView(View):
@@ -12,7 +13,7 @@ class IndexView(View):
         })
 
 
-class PostDetailView(View):
+class PostDetailView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         post_data = Post.objects.get(id=self.kwargs['pk'])
         return render(request, 'app/post_detail.html', context= {
@@ -20,7 +21,7 @@ class PostDetailView(View):
         })
 
 
-class CreatePostView(View):
+class CreatePostView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         form = PostModelForm(request.POST or None)
 
