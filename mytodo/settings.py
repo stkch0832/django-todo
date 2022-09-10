@@ -137,3 +137,12 @@ ACCOUNT_FORMS = {
 'login': 'accounts.forms.CustomLoginForm',
 'signup': 'accounts.forms.CustomSignupForm',
 }
+
+from django.contrib.messages import constants as messages
+
+MESSAGE_TAGS = {
+    messages.INFO: 'alert alert-info',
+    messages.SUCCESS: 'alert alert-success',
+    messages.WARNING: 'alert alert-warning',
+    messages.ERROR: 'alert alert-danger',
+}
