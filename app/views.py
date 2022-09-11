@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from .models import Post
 from .forms import PostModelForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 from django.core.paginator import Paginator
 
 
@@ -35,6 +36,7 @@ class CreatePostView(LoginRequiredMixin, View):
 
         return render(request, 'app/post_form.html', context = {
             'form': form,
+            'btn': '新規作成'
             })
 
     def post(self, request, *args, **kwargs):
@@ -50,7 +52,9 @@ class CreatePostView(LoginRequiredMixin, View):
             post_data.description = form.cleaned_data['description']
 
             post_data.save()
-            return redirect('post_detail', post_data.id)
+            # return redirect('post_detail', post_data.id)
+            messages.success(request, '新しいタスクを追加しました。')
+            return redirect('index')
 
         return render(request, 'app/post_form.html', context = {
             'form': form,
@@ -72,7 +76,8 @@ class PostEditView(View):
         )
 
         return render(request, 'app/post_form.html', context={
-            'form': form
+            'form': form,
+            'btn': '登録する'
         })
 
     def post(self, request, *args, **kwargs):
@@ -86,6 +91,7 @@ class PostEditView(View):
             post_data.limit_datetime = form.cleaned_data['limit_datetime']
             post_data.description = form.cleaned_data['description']
             post_data.save()
+            messages.success(request, 'タスク内容を修正しました。')
             return redirect('post_detail', self.kwargs['pk'])
 
         return render(request, 'app/post_form.hrml', context={
@@ -103,4 +109,5 @@ class PostDeleteView(View):
     def post(self, request, *args, **kwargs):
         post_data = Post.objects.get(id=self.kwargs['pk'])
         post_data.delete()
+        messages.error(request, 'タスクを削除しました。')
         return redirect('index')
