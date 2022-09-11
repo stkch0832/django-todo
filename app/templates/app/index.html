@@ -9,21 +9,51 @@ Todo list
 
 {% block content %}
 
-    {% for post in post_data %}
-    <div class="card p-3">
-        <div class="card-body">
-            <h2 class="card-title">{{ post.title }}</h2>
-            <h3 class="card-urgency row">
-                <p class="card-status col">{{ post.get_status_display }}</p>
-                <p class="card-priority col">{{ post.get_priority_display }}</p>
-            </h3>
-            <p class="card-limit_datetime">期限: {{ post.limit_datetime }}</p>
-            <p class="card-description">{{ post.description|truncatechars:50 }}</p>
-            <div class="col Authenticationtext-right">
-                <a class="btn btn-primary" href="{% url 'post_detail' post.id %}">詳細</a>
-            </div>
+{% for list in page_obj %}
+<div class="card p-3">
+    <div class="card-body">
+        <h2 class="card-title">{{ list.title }}</h2>
+        <h3 class="card-urgency row">
+            <p class="card-status col">{{ list.get_status_display }}</p>
+            <p class="card-priority col">{{ list.get_priority_display }}</p>
+        </h3>
+        <p class="card-limit_datetime">期限: {{ list.limit_datetime }}</p>
+        <p class="card-description">{{ list.description|truncatechars:50 }}</p>
+        <div class="Authenticationtext-right row justify-content-end">
+            <a class="btn btn-primary mr-3 px-4" href="{% url 'post_detail' list.id %}">詳細</a>
         </div>
     </div>
-    {% endfor %}
+</div>
+
+{% endfor %}
+
+<nav aria-label="...">
+    <ul class="pagination justify-content-center">
+        {% if page_obj.has_previous %}
+        <li class="page-item">
+            <a href="?page=1" class="page-link">&laquo; 最初</a>
+        </li>
+        <li class="page-item">
+            <a href="?page={{ page_obj.previous_page_number }}" class="page-link">{{ page_obj.previous_page_number }}
+            </a>
+
+        </li>
+        {% endif %}
+
+        <li class="page-link active">
+            {{ page_obj.number }}
+        </li>
+
+        {% if page_obj.has_next %}
+        <li class="page-item">
+            <a href="?page={{ page_obj.next_page_number }}" class="page-link">{{ page_obj.next_page_number }}</a>
+        </li>
+        <li class="page-item">
+            <a href="?page={{ page_obj.paginator.num_pages }}" class="page-link">最後 &raquo;</a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+
 
 {% endblock %}
